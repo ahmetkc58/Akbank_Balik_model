@@ -1,37 +1,63 @@
-Bu proje, Akbank Deep Learning Bootcamp kapsamında geliştirilmiş olup, çeşitli balık türlerini içeren bir görüntü veri seti kullanarak balık sınıflandırması yapmayı amaçlamaktadır. Yapay sinir ağı (ANN) modeli kullanılarak yüksek doğrulukta bir sınıflandırıcı modeli geliştirilmiştir.
+# Fish Classification with Artificial Neural Networks (ANN)
 
-🐟 Kaggle üzerindeki projeme buradan ulaşabilirsiniz.
+Bu proje, Akbank Deep Learning Bootcamp kapsamında geliştirilmiştir. Projenin amacı, farklı balık türlerini içeren bir görüntü veri seti kullanarak balık sınıflandırması yapmak ve bu süreçte yapay sinir ağı (ANN) modeli kullanarak yüksek doğrulukta bir sınıflandırıcı model geliştirmektir.
 
-Proje Özeti
-Veri Hazırlama ve Keşifsel Veri Analizi (EDA)
+- 🐟 Keggle projeme [buradan](https://www.kaggle.com/code/canak0/fish-classification](https://www.kaggle.com/code/melikenurotak/fishclassification-with-ann-globalai))
+ ulaşabilirsiniz.
 
-Veri Setinin Yüklenmesi: Projenin temelini, Kaggle'dan alınan balık görüntü veri seti oluşturmaktadır. Veri setindeki balık türleri, her biri farklı klasörlerde yer almakta.
-Veri Seti Organizasyonu: Balık türlerine ait görüntü dosyalarının yolları ve sınıf etiketleri (balık türleri), Python kullanılarak düzenlenmiş ve Pandas DataFrame'e dönüştürülmüştür.
-Veri Keşfi (EDA): Veri setindeki balık türlerinin sayısı ve her sınıfa ait görüntülerin dağılımı analiz edilmiştir. Veri dengesizliği durumunda, veri artırma (data augmentation) yöntemleri ile çözüm sağlanması planlanmıştır.
-Veri Ön İşleme
+- Bu projede gerçekleştirdiğimiz adımlar şu şekildedir:
 
-Etiketleme: Balık türlerine göre görüntüler etiketlenmiş ve eğitim sırasında kullanılmak üzere düzenlenmiştir.
-Veri Setinin Bölünmesi: Veri seti, eğitim ve test seti olarak ayrılmıştır. Eğitim seti modelin öğrenmesi için, test seti ise modelin doğruluğunu değerlendirmek için kullanılmıştır.
-Veri Artırma (Augmentation): Eğitim verileri üzerinde dönüşüm işlemleri (döndürme, aynalama gibi) uygulanarak, modelin daha geniş bir veri çeşitliliğiyle eğitilmesi sağlanmıştır.
-Model Geliştirme ve Eğitim
+## 1. Veri Hazırlama ve Keşifsel Veri Analizi (EDA)
 
-Yapay Sinir Ağı (ANN) Modeli: TensorFlow ve Keras kullanılarak, balık görüntülerini sınıflandırmak üzere bir yapay sinir ağı modeli geliştirilmiştir.
-Model Mimarisi: Modeldeki katman sayısı, aktivasyon fonksiyonları (ReLU, Softmax vb.), optimizer (örneğin, Adam), ve kayıp fonksiyonu (categorical crossentropy) belirlenmiş ve eğitim optimize edilmiştir.
-Eğitim Süreci: Model, eğitim verileri üzerinde eğitilmiş ve doğrulama seti kullanılarak performansı izlenmiştir. Eğitim sırasında doğruluk (accuracy) ve kayıp (loss) gibi metrikler takip edilmiştir.
-Model Değerlendirme
+*Veri Setinin Yüklenmesi*: Kaggle'dan alınan balık görüntü veri seti projenin temelini oluşturur. Veri setindeki balık türleri farklı klasörlerde tutulur.
+Veri Seti Organizasyonu: Her bir balık türüne ait görüntü dosyalarının yolları ve sınıf etiketleri (balık türleri), Python kullanarak organize edilmiştir. Dosya yolları ve etiketler bir Pandas DataFrame'e dönüştürülmüştür.
 
-Başarı Metrikleri: Modelin performansı şu metriklerle değerlendirilmiştir:
-Accuracy (Doğruluk): Modelin genel başarı oranı.
-Confusion Matrix (Karmaşıklık Matrisi): Her sınıf için doğru ve yanlış sınıflandırmalar.
-Classification Report (Sınıflandırma Raporu): Precision, recall, F1-score gibi metrikler kullanılarak modelin başarısı ölçülmüştür.
-Model Optimizasyonu: Eğitim sırasında overfitting’in önlenmesi amacıyla doğrulama seti kullanılmış ve gerekli durumlarda erken durdurma (early stopping) ve düzenleme (regularization) gibi yöntemler uygulanmıştır.
-Sonuçlar ve Yorumlar
-Bu proje ile geliştirilen yapay sinir ağı modeli, balık türlerini yüksek doğruluk oranıyla sınıflandırmayı başarmıştır. Veri artırma ve optimizasyon teknikleri ile model daha da güçlendirilmiş ve elde edilen sonuçlar başarıyla değerlendirilmiştir. Sonuç olarak, bu model balık türlerini otomatik olarak ayırt etmek için etkili bir çözüm sunmaktadır.
+*Veri Keşfi (EDA):*
+Veri setinde kaç farklı balık türü olduğu ve her sınıftaki görüntü sayısı analiz edilmiştir.
+Her sınıfa ait görüntülerin dengesi gözlemlenmiş, gerekirse veri artırma (data augmentation) işlemleri yapılabilecek şekilde planlama yapılmıştır.
 
+## 2. Veri Ön İşleme
+
+*Görüntülerin Etiketlenmesi*: Veri setindeki balık türleri etiketlenmiş ve bu etiketler model eğitiminde kullanılmak üzere düzenlenmiştir.
+
+*Veri Setinin Bölünmesi:* Eğitim ve test verileri olarak ayrılmıştır. Eğitim seti, modelin öğrenmesi için kullanılırken test seti, modelin performansını değerlendirmek için kullanılmıştır.
+
+*Veri Artırma (Augmentation)*: Eğitim verisi üzerinde dönüşüm (rotation, flip gibi) işlemleri gerçekleştirilerek modelin daha fazla veri görmesi sağlanmıştır. Bu işlem, modelin genelleme yeteneğini artırmak için kullanılır.
+
+## 3. Model Geliştirme ve Eğitim
+
+*Yapay Sinir Ağı (ANN) Modeli*: TensorFlow ve Keras kullanılarak bir yapay sinir ağı modeli oluşturulmuştur. Model, balık görüntülerini sınıflandırmak için yapılandırılmıştır.
+
+*Model Mimarisi:*
+Katman sayısı, aktivasyon fonksiyonları (ReLU, Softmax vb.), optimizer (Adam gibi) ve loss fonksiyonu (categorical crossentropy) gibi bileşenler belirlenmiş ve modelin eğitimi optimize edilmiştir.
+
+*Modelin Eğitimi*: Model, eğitim seti üzerinde eğitilmiş ve doğrulama seti ile performansı izlenmiştir. Eğitim sırasında doğruluk (accuracy) ve kayıp (loss) gibi metrikler takip edilmiştir.
+
+## 4. Model Değerlendirme
+
+*Başarı Metrikleri:* Eğitim sonunda modelin performansı şu metriklerle değerlendirilmiştir:
+
+*Accuracy (Doğruluk):* Modelin genel başarı oranı.
+
+*Confusion Matrix (Karmaşıklık Matrisi):* Her sınıf için doğru ve yanlış sınıflandırmalar.
+
+*Classification Report (Sınıflandırma Raporu):* Precision, recall, F1-score gibi sınıflandırma başarı metrikleri.
+Model Optimizasyonu: Eğitim sırasında overfitting'in önüne geçmek için düzenli olarak doğrulama seti ile test edilmiştir. Gerekirse erken durdurma (early stopping) ve model düzenleme (regularization) yöntemleri uygulanmıştır.
+
+## 5. Sonuçlar ve Yorumlar
+Bu projede geliştirilen ANN modeli, veri seti üzerindeki balık görüntülerini başarılı bir şekilde sınıflandırmıştır.
+Model, veri artırma ve optimizasyon teknikleri ile geliştirilmiş, elde edilen sonuçlar başarı ile değerlendirilmiştir.
+Sonuç olarak, balık görüntülerini sınıflandırmada etkili bir çözüm geliştirilmiş olup, bu proje balık türlerini otomatik olarak ayırt etmek için kullanılabilir.
 Kullanılan Teknolojiler
-Python: Veri işleme, model geliştirme ve analiz süreçlerinde.
-TensorFlow & Keras: Yapay sinir ağı modelinin oluşturulması ve eğitimi.
-Pandas & NumPy: Veri manipülasyonu ve düzenleme işlemleri.
-Matplotlib & Seaborn: Veri görselleştirme ve analiz.
-Sklearn: Model değerlendirme metrikleri (confusion matrix, accuracy, classification report).
-Bu proje, Melike Nur ÇOTAK ile birlikte gerçekleştirilmiştir.
+
+- *Python*: Veri işleme, model geliştirme ve analiz.
+
+- *TensorFlow & Keras*: Yapay sinir ağı modeli oluşturma ve eğitme.
+
+- *Pandas & NumPy*: Veri manipülasyonu ve düzenleme.
+
+- *Matplotlib & Seaborn*: Görselleştirme ve veri analizi.
+
+- *Sklearn*: Model değerlendirme metrikleri (confusion matrix, accuracy, classification report).
+
+*Bu proje Melike Nur ÇOTAK ile birlikte yapılmıştır*

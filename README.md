@@ -1,1 +1,0 @@
-# Akbank_Bal-k_model
